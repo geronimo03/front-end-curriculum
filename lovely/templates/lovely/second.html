@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'share/_navbar.html' %}
+<h1>
+    second
+</h1>
+<div>
+    <p>
+        글쓰기
+    </p>
+    <a href="{% url 'posts:new' %}"><button type="button" class="btn btn-outline-primary">글쓰기</button></a>
+    <a href="{% url 'posts:new' %}"><button type="button" class="btn btn-primary btn-lg">글쓰기</button></a>
+    <a href="{% url 'posts:new' %}"><button type="button" class="btn btn-primary btn-lg btn-block">글쓰기</button></a>
+</div>
+{% include 'share/footer.html' %}
+{% endblock %}
