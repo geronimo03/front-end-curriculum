@@ -1,0 +1,20 @@
+h1{
+    margin:5px;
+}
+
+.card img{
+    width:50%;
+    margin-top:1em;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.card{
+    float:left;
+}
+
+
+.footer{
+    float:left;
+    width:100%;
+}

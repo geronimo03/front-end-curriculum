@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'share/_navbar.html' %}
+<div class="container">
+    <h1>
+        글 수정하기
+    </h1>
+    <form action="{% url 'posts:update' post.pk %}" method="POST">
+        {% include 'posts/_form.html' with form=form btn_value="글수정" %}
+    </form>
+</div>
+{% endblock %}

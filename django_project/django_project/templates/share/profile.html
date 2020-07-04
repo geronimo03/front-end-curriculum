@@ -1,0 +1,16 @@
+{% load static %}
+<div>
+    <div class="card" style="width: 18rem;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" class="card-img-top" alt="profile pic here">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <a href='{% url "lovely:first" %}'><li class="list-group-item">내 정보</li></a>
+        <a href='{% url "lovely:second" %}'><li class="list-group-item">도서 목록</li></a>
+        <a href='{% url "lovely:third" %}'><li class="list-group-item">통계</li></a>
+    </ul>
+    </div>
+</div>
+    

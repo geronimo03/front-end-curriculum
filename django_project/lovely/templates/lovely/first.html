@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'share/_navbar.html' %}
+<h1>
+    마이 페이지
+</h1>
+{% include 'share/profile.html' %}
+<div>
+    <input type="date">
+    {{ example_form.my_date_field }}
+</div>
+<div>
+    {% include 'share/footer.html' %}
+</div>
+{% endblock %}

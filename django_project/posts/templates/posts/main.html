@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'share/_navbar.html' %}
+
+{% include 'share/_carousel.html' %}
+<div>
+
+    
+{% include 'share/_breadcrumbs.html' %}
+<div class="row">
+    <div class="card-group justify-content-center">
+        {% for post in posts %}
+    <div class="col-xl-5 col-lg-5 col-md-5 col-12 d-flex">
+            <div class="card flex-fill" style="width: 18rem; margin-top: 20px;">
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+                <p>{{ post.created_at }}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+    </div>
+    {% endfor %}
+    </div>
+    
+
+{% include 'share/footer.html' %}
+{% endblock %}
