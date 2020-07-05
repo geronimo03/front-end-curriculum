@@ -6,11 +6,25 @@
 <h1>
     마이 페이지
 </h1>
-{% include 'share/profile.html' %}
-<div>
+
+<div class="col-12 justify-content-center">
+    {% include 'share/profile.html' %}
+    <div class="card profile-first-page">
+        <div class="card-header">내 정보</div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p class="card-title">아이디</p>
+                <p class="card-text">exampleexample</p>
+                <p class="card-title">이메일</p>
+                <p class="card-text">example@example.com</p>
+            </blockquote>
+        </div>
+    </div>
+    
     <input type="date">
     {{ example_form.my_date_field }}
 </div>
+
 <div>
     {% include 'share/footer.html' %}
 </div>

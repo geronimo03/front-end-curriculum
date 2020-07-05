@@ -1,3 +1,19 @@
+
+.justify-content-center{
+    background-color:purple;
+}
+
+.write-button{
+    margin:20px;
+    background-color:dodgerblue;
+    float:right;
+}
+
+
+nav a img{
+    height:35px;
+}
+
 h1{
     margin:5px;
 }
@@ -11,8 +27,12 @@ h1{
 
 .card{
     float:left;
+    overflow:hidden;
 }
 
+.profile-first-page{
+    width:70%;
+}
 
 .footer{
     float:left;
