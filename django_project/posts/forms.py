@@ -9,6 +9,7 @@ class PostForm(forms.ModelForm):
         choices=Post.POST_TYPES,
         required=True
     )
+
     class Meta:
         model = Post
         fields = ['title', '_type', 'content', 'image']

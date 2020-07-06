@@ -27,7 +27,7 @@ SECRET_KEY = '$q4lwx$6b9c#uat4z20-l!ayyikaf*8o6ezj$cam+7143cod-h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".goorm.io"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'lovely',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+WEBPACK_LOADER = {
+	'DEFAULT':{
+		'BUNDLE_DIR_NAME':'bundles/',
+		'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+	}
+}

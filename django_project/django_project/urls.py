@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from . import views
 from posts.views import main
 from lovely.views import first, second, third
 from django.conf import settings
@@ -22,7 +24,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main, name="main"),
+    path('', TemplateView.as_view(templateView.as_view(template_name="base.html"))),
     path('lovely/', include('lovely.urls')),
     path('posts/', include('posts.urls')),
     path('lovely/second/', second, name="second"),

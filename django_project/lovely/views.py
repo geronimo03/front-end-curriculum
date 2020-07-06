@@ -3,30 +3,36 @@ from .models import Post
 from .forms import PostForm
 import pdb
 
+
 def first(request):
     return render(request, 'lovely/first.html')
 
+
 def second(request):
-    context={
-        'posts':Post.objects.all()
+    context = {
+        'posts': Post.objects.all()
     }
     return render(request, 'lovely/second.html', context)
+
 
 def third(request):
     return render(request, 'lovely/third.html')
 
+
 def new(request):
-    context={
-        'form':PostForm()
+    context = {
+        'form': PostForm()
     }
     return render(request, 'lovely/new.html', context)
 
+
 def create(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
     return redirect('second')
+
 
 def view(request, post_id):
     post = Post.objects.get(pk=post_id)
