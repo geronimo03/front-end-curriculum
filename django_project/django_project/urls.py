@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from . import views
-from posts.views import main
-from lovely.views import first, second, third
+from django_project.posts import views
+from django_project.posts.views import main
+from django_project.lovely.views import first, second, third
 from django.conf import settings
 from django.conf.urls.static import static
 
