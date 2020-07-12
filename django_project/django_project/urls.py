@@ -22,12 +22,16 @@ from lovely.views import first, second, third
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main, name="main"),
+    #path('', main, name="main"),
     path('lovely/', include('lovely.urls')),
     path('posts/', include('posts.urls')),
+    path('', include('posts.urls')),
     path('lovely/second/', second, name="second"),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
