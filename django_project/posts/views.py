@@ -1,50 +1,57 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm
 from django.views.decorators.http import require_POST
-from rest_framework import viewsets, status, generics, permissions
-from rest_framework.decorators import action
+from rest_framework import viewsets, status, generics, permissions, renderers
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from posts.models import Post
 from posts.serializers import PostSerializer, UserSerializer
 from django.contrib.auth.models import User
+from posts.permissions import IsOwnerOrReadOnly
 
 
-class UserList(generics.ListAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
 
-
-class PostList(generics.ListCreateAPIView):
+    Additionally we also provide an extra `highlight` action.
+    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'posts': reverse('post-list', request=request, format=format)
+    })
+
+
+class PostHighlight(generics.GenericAPIView):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    renderer_classes = [renderers.StaticHTMLRenderer]
 
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-    @action(detail=True, methods=['POST'])
-    def write_post(self, request, pk=None):
-        post = Post.objects.get(id=pk)
-        # print('post title', post.title)
-
-        response = {'message': 'working!'}
-        return Response(response, status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        post = self.get_object()
+        return Response(post.highlighted)
 
 
 def main(request):

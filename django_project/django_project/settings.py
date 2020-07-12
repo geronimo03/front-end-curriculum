@@ -131,9 +131,7 @@ STATICFILES_DIRS = [
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 
-WEBPACK_LOADER = {
-	'DEFAULT':{
-		'BUNDLE_DIR_NAME':'bundles/',
-		'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
-	}
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 6,
 }
