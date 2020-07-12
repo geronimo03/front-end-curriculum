@@ -2,7 +2,24 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from .forms import PostForm
 from django.views.decorators.http import require_POST
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from .serializers import PostSerializer
 import pdb
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    @action(detail=True, methods=['POST'])
+    def write_post(self, request, pk=None):
+        post = Post.objects.get(id=pk)
+        print('post title', post.title)
+
+        response = {'message': 'working!'}
+        return Response(response, status=status.HTTP_200_OK)
+
 
 
 def main(request):
