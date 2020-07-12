@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'lovely',
-    'webpack_loader',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

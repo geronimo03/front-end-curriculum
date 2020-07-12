@@ -1,5 +1,4 @@
 {% load static %}
-{% load render_bundle from webpack_loader %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,7 +14,7 @@
   </head>
   <body>
     <div id="root"></div>
-    {% render_bundle 'main' %}
+
     {% block content %}
       
     
