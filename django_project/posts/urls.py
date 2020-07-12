@@ -1,6 +1,5 @@
-from posts.views import PostViewSet, UserViewSet, api_root
-from django.conf.urls import include
-from rest_framework import routers, renderers
+from posts.views import PostViewSet, UserViewSet
+from rest_framework import renderers
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from posts import views

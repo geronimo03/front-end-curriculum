@@ -14,7 +14,7 @@ class Post(models.Model):
         (2, "사용자선택")
     ]
     user = models.ForeignKey('auth.User', related_name='posts', on_delete=models.CASCADE, default=0)
-    highlighted = models.TextField(default=None)
+    highlight = models.TextField(default=None)
 
     title = models.CharField(max_length=200,
                              verbose_name="제목")
