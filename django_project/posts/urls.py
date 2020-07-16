@@ -1,12 +1,11 @@
-from posts.views import PostViewSet, UserViewSet
+from .views import PostViewSet, UserViewSet
 from rest_framework import renderers
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from posts import views
-
+from . import views
 
 router = DefaultRouter()
-router.register(r'post', views.PostViewSet)
+router.register(r'posts', views.PostViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
@@ -16,7 +15,6 @@ urlpatterns = [
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls'))
 ]
-
 
 snippet_list = PostViewSet.as_view({
     'get': 'list',

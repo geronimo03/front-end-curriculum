@@ -30,6 +30,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True,
                                       verbose_name="업데이트시간")
 
+
     def save(self, *args, **kwargs):
         options = {'title': self.title} if self.title else {}
         formatter = HtmlFormatter(style=self.style, full=True, **options)
